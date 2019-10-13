@@ -1,9 +1,9 @@
-using DotNetWebApiSwagger;
-using Swashbuckle.Application;
-using Swashbuckle.Swagger;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DotNetWebApiSwagger;
+using Swashbuckle.Application;
+using Swashbuckle.Swagger;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
@@ -16,10 +16,10 @@ namespace DotNetWebApiSwagger
         {
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
-                    {
-                        c.SingleApiVersion("v1", "DotNetWebApiSwagger");
-                        c.DocumentFilter<FakesDocumentFilter>();
-                    })
+                {
+                    c.SingleApiVersion("v1", "DotNetWebApiSwagger");
+                    c.DocumentFilter<FakesDocumentFilter>();
+                })
                 .EnableSwaggerUi();
         }
 
@@ -40,10 +40,10 @@ namespace DotNetWebApiSwagger
                     // getメソッド
                     get = new Operation
                     {
-                        tags = new[] { Path },
+                        tags = new[] {Path},
                         operationId = Path + "_Get",
                         consumes = null,
-                        produces = new[] { "application/json", "text/json", "application/xml", "text/xml" },
+                        produces = new[] {"application/json", "text/json", "application/xml", "text/xml"},
                         parameters = new List<Parameter>
                         {
                             new Parameter
@@ -64,7 +64,6 @@ namespace DotNetWebApiSwagger
                                     description = "OK",
                                     schema = new Schema {type = "string"}
                                 }
-
                             }
                         }
                     }
@@ -79,10 +78,10 @@ namespace DotNetWebApiSwagger
                     // putメソッド
                     put = new Operation
                     {
-                        tags = new[] { Path },
+                        tags = new[] {Path},
                         operationId = Path + "_Put",
                         consumes = null,
-                        produces = new[] { "application/json", "text/json", "application/xml", "text/xml" },
+                        produces = new[] {"application/json", "text/json", "application/xml", "text/xml"},
                         parameters = new List<Parameter>
                         {
                             new Parameter
@@ -102,14 +101,12 @@ namespace DotNetWebApiSwagger
                                     description = "OK",
                                     schema = new Schema {type = "string"}
                                 }
-
                             }
                         }
                     }
                 };
                 return x;
             }
-
         }
     }
 }
