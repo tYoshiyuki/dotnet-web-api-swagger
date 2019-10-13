@@ -40,6 +40,7 @@ namespace DotNetWebApiSwagger
                     // getメソッド
                     get = new Operation
                     {
+                        description = "ダミーのエンドポイントです、実際のエンドポイントは存在しません。",
                         tags = new[] {Path},
                         operationId = Path + "_Get",
                         consumes = null,
@@ -78,6 +79,7 @@ namespace DotNetWebApiSwagger
                     // putメソッド
                     put = new Operation
                     {
+                        description = "ダミーのエンドポイントです、実際のエンドポイントは存在しません。",
                         tags = new[] {Path},
                         operationId = Path + "_Put",
                         consumes = null,
@@ -89,7 +91,7 @@ namespace DotNetWebApiSwagger
                                 name = "InputModel",
                                 @in = "body",
                                 required = true,
-                                schema = new Schema()
+                                schema = new Schema { @ref = "#/definitions/InputModel"}
                             }
                         },
                         responses = new Dictionary<string, Response>

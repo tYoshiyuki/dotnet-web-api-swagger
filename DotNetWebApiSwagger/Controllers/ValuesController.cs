@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using DotNetWebApiSwagger.Models;
 
 namespace DotNetWebApiSwagger.Controllers
 {
@@ -31,11 +32,5 @@ namespace DotNetWebApiSwagger.Controllers
         public void Delete(int id)
         {
         }
-    }
-
-    public class InputModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }
