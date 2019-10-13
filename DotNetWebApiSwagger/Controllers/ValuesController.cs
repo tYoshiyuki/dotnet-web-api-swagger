@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 
 namespace DotNetWebApiSwagger.Controllers
@@ -22,7 +18,7 @@ namespace DotNetWebApiSwagger.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]InputModel inputModel)
         {
         }
 
@@ -36,4 +32,11 @@ namespace DotNetWebApiSwagger.Controllers
         {
         }
     }
+
+    public class InputModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
 }

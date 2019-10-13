@@ -14,8 +14,6 @@ namespace DotNetWebApiSwagger
     {
         public static void Register()
         {
-            var thisAssembly = typeof(SwaggerConfig).Assembly;
-
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
                     {
@@ -31,10 +29,11 @@ namespace DotNetWebApiSwagger
 
             public void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
             {
-                swaggerDoc.paths.Add($"/api/{Path}/{{id}}", CreatePathItem());
+                swaggerDoc.paths.Add($"/api/{Path}/{{id}}", CreateGetPathItem());
+                swaggerDoc.paths.Add($"/api/{Path}", CreatePostPathItem());
             }
 
-            private PathItem CreatePathItem()
+            private PathItem CreateGetPathItem()
             {
                 var x = new PathItem
                 {
@@ -42,7 +41,7 @@ namespace DotNetWebApiSwagger
                     get = new Operation
                     {
                         tags = new[] { Path },
-                        operationId = Path,
+                        operationId = Path + "_Get",
                         consumes = null,
                         produces = new[] { "application/json", "text/json", "application/xml", "text/xml" },
                         parameters = new List<Parameter>
@@ -69,11 +68,48 @@ namespace DotNetWebApiSwagger
                             }
                         }
                     }
-
-                    // TODO POSTメソッド
                 };
                 return x;
             }
+
+            private PathItem CreatePostPathItem()
+            {
+                var x = new PathItem
+                {
+                    // putメソッド
+                    put = new Operation
+                    {
+                        tags = new[] { Path },
+                        operationId = Path + "_Put",
+                        consumes = null,
+                        produces = new[] { "application/json", "text/json", "application/xml", "text/xml" },
+                        parameters = new List<Parameter>
+                        {
+                            new Parameter
+                            {
+                                name = "InputModel",
+                                @in = "body",
+                                required = true,
+                                schema = new Schema()
+                            }
+                        },
+                        responses = new Dictionary<string, Response>
+                        {
+                            {
+                                "200",
+                                new Response
+                                {
+                                    description = "OK",
+                                    schema = new Schema {type = "string"}
+                                }
+
+                            }
+                        }
+                    }
+                };
+                return x;
+            }
+
         }
     }
 }
